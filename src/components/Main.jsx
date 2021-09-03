@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import {db} from "../firebase"
 
+const renderData = (data) => {
+    return(
+        <ul>
+            {data.map((datos, index) =>{
+                return (
+                    <li key={index}>
+                      <img width="100" height="50" src={datos.url} alt={datos.title} />
+                      <p>{datos.title}</p>
+                    </li>
+                  );
+            })}
+        </ul>
+    );
+};
+
+
 function Main() {
     const [data, setData] = useState([])
 
@@ -17,11 +33,10 @@ function Main() {
     }, [])
     return (
         <div>
-            <ul>
-            {data.map((todo, index) =>{
-                return <li key={index}>{todo.title}</li>
-            })}
-        </ul>
+            
+            <h1>layouts</h1>
+
+            {renderData(data)}
         </div>
     )
 }
